@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Lecture: Codable {
+public struct Lecture: Codable, Identifiable {
     public enum CodingKeys: String, CodingKey {
         case id
         case number

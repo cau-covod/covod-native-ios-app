@@ -10,15 +10,33 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selection = 0
+    private var courses: [Course] = []
+    
+    init(courses: [Course]) {
+        self.courses = courses
+    }
  
     var body: some View {
-        TabView(selection: $selection){
-            Text("Testing this UI")
-                .font(.title)
+        TabView(selection: $selection) {
+            NavigationView {
+                List(courses) { course in
+                    VStack {
+                        (Text(course.name ?? "Unnamed course")
+                            .bold() +
+                        (course.description != nil
+                            ? Text("\n\(course.description!))")
+                                .font(.body)
+                                .foregroundColor(.gray)
+                            : Text("")))
+                        .multilineTextAlignment(.leading)
+                    }
+                }
+                    .navigationBarTitle("Courses")
+            }
                 .tabItem {
                     VStack {
                         Image("first")
-                        Text("First")
+                        Text("Courses")
                     }
                 }
                 .tag(0)
@@ -37,6 +55,12 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(courses: [
+            Course(id: 0, name: "Algorithms and Data Structures", description: "Algorithmic algorithms and structural structres", lectures: [
+                Lecture(id: 0, number: 0, pubTime: "now", description: "Blub blub"),
+                Lecture(id: 1, number: 0, pubTime: "now", description: "Blub blub"),
+                Lecture(id: 2, number: 0, pubTime: "now", description: "Blub blub")
+            ])
+        ])
     }
 }

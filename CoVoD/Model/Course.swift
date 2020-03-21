@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Course: Codable {
+public struct Course: Codable, Identifiable {
     public let id: Int
     public let name: String?
     public let description: String?
