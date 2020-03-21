@@ -17,6 +17,7 @@
 		C7733EE52426B42E006C863E /* CoVoDUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7733EE42426B42E006C863E /* CoVoDUITests.swift */; };
 		C7C3F1C62426BA6500787E98 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C3F1C52426BA6500787E98 /* Course.swift */; };
 		C7C3F1C82426BADE00787E98 /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C3F1C72426BADE00787E98 /* Lecture.swift */; };
+		C7FDA7452426D82C0055AE84 /* CoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA7442426D82B0055AE84 /* CoursesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		C7733EE62426B42E006C863E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7C3F1C52426BA6500787E98 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		C7C3F1C72426BADE00787E98 /* Lecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lecture.swift; sourceTree = "<group>"; };
+		C7FDA7442426D82B0055AE84 /* CoursesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				C7733EC22426B427006C863E /* AppDelegate.swift */,
 				C7733EC42426B427006C863E /* SceneDelegate.swift */,
 				C7733EC62426B427006C863E /* ContentView.swift */,
+				C7FDA7442426D82B0055AE84 /* CoursesView.swift */,
 				C7733EC82426B42D006C863E /* Assets.xcassets */,
 				C7733ECD2426B42D006C863E /* LaunchScreen.storyboard */,
 				C7733ED02426B42D006C863E /* Info.plist */,
@@ -286,6 +289,7 @@
 				C7733EC52426B427006C863E /* SceneDelegate.swift in Sources */,
 				C7733EC72426B427006C863E /* ContentView.swift in Sources */,
 				C7C3F1C82426BADE00787E98 /* Lecture.swift in Sources */,
+				C7FDA7452426D82C0055AE84 /* CoursesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

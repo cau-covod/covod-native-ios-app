@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selection = 0
-    private var courses: [Course] = []
+    @State private var courses: [Course] = []
     
     init(courses: [Course]) {
         self.courses = courses
@@ -18,21 +18,7 @@ struct ContentView: View {
  
     var body: some View {
         TabView(selection: $selection) {
-            NavigationView {
-                List(courses) { course in
-                    VStack {
-                        (Text(course.name ?? "Unnamed course")
-                            .bold() +
-                        (course.description != nil
-                            ? Text("\n\(course.description!))")
-                                .font(.body)
-                                .foregroundColor(.gray)
-                            : Text("")))
-                        .multilineTextAlignment(.leading)
-                    }
-                }
-                    .navigationBarTitle("Courses")
-            }
+            CoursesView(courses: $courses)
                 .tabItem {
                     VStack {
                         Image(systemName: "tv.fill")
