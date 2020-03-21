@@ -35,7 +35,7 @@ struct ContentView: View {
             }
                 .tabItem {
                     VStack {
-                        Image("first")
+                        Image(systemName: "tv.fill")
                         Text("Courses")
                     }
                 }
@@ -44,8 +44,8 @@ struct ContentView: View {
                 .font(.title)
                 .tabItem {
                     VStack {
-                        Image("second")
-                        Text("Second")
+                        Image(systemName: "gear")
+                        Text("Settings")
                     }
                 }
                 .tag(1)
