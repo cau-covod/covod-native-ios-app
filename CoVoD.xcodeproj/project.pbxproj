@@ -18,6 +18,8 @@
 		C7C3F1C62426BA6500787E98 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C3F1C52426BA6500787E98 /* Course.swift */; };
 		C7C3F1C82426BADE00787E98 /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C3F1C72426BADE00787E98 /* Lecture.swift */; };
 		C7FDA7452426D82C0055AE84 /* CoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA7442426D82B0055AE84 /* CoursesView.swift */; };
+		C7FDA7472426DA150055AE84 /* LecturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA7462426DA150055AE84 /* LecturesView.swift */; };
+		C7FDA7492426DB500055AE84 /* ListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA7482426DB500055AE84 /* ListCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		C7C3F1C52426BA6500787E98 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		C7C3F1C72426BADE00787E98 /* Lecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lecture.swift; sourceTree = "<group>"; };
 		C7FDA7442426D82B0055AE84 /* CoursesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesView.swift; sourceTree = "<group>"; };
+		C7FDA7462426DA150055AE84 /* LecturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LecturesView.swift; sourceTree = "<group>"; };
+		C7FDA7482426DB500055AE84 /* ListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,8 @@
 				C7733EC42426B427006C863E /* SceneDelegate.swift */,
 				C7733EC62426B427006C863E /* ContentView.swift */,
 				C7FDA7442426D82B0055AE84 /* CoursesView.swift */,
+				C7FDA7462426DA150055AE84 /* LecturesView.swift */,
+				C7FDA7482426DB500055AE84 /* ListCard.swift */,
 				C7733EC82426B42D006C863E /* Assets.xcassets */,
 				C7733ECD2426B42D006C863E /* LaunchScreen.storyboard */,
 				C7733ED02426B42D006C863E /* Info.plist */,
@@ -289,7 +295,9 @@
 				C7733EC52426B427006C863E /* SceneDelegate.swift in Sources */,
 				C7733EC72426B427006C863E /* ContentView.swift in Sources */,
 				C7C3F1C82426BADE00787E98 /* Lecture.swift in Sources */,
+				C7FDA7472426DA150055AE84 /* LecturesView.swift in Sources */,
 				C7FDA7452426D82C0055AE84 /* CoursesView.swift in Sources */,
+				C7FDA7492426DB500055AE84 /* ListCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

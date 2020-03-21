@@ -9,26 +9,20 @@
 import SwiftUI
 
 struct CoursesView: View {
-    @Binding private var courses: [Course]
+    private let courses: [Course]
     
-    init(courses: Binding<[Course]>) {
-        self._courses = courses
+    init(courses: [Course]) {
+        self.courses = courses
     }
     
     var body: some View {
         NavigationView {
             List(courses) { course in
-                NavigationLink(destination: Text("Lectures")) {
-                    VStack {
-                        (Text(course.name ?? "Unnamed course")
-                            .bold() +
-                            (course.description != nil
-                                ? Text("\n\(course.description!))")
-                                    .font(.body)
-                                    .foregroundColor(.gray)
-                                : Text("")))
-                            .multilineTextAlignment(.leading)
-                    }
+                NavigationLink(destination: LecturesView(lectures: course.lectures ?? [])) {
+                    ListCard(
+                        label: course.name ?? "Unnamed course",
+                        description: course.description
+                    )
                 }
             }
                 .navigationBarTitle("Courses")
