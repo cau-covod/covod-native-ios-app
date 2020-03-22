@@ -28,7 +28,7 @@ struct LecturesView: View {
                 ListCard(label: "Lecture \(lecture.number ?? -1)", description: [
                     lecture.description,
                     lecture.createdAt.flatMap(self.inputDateFormatter.date(from:)).map(self.outputDateFormatter.string(from:)),
-                    lecture.commentCount.map { "\($0) comments" }
+                    lecture.commentCount.map { "\($0) \("comment".pluralize(with: $0))" }
                 ].compactMap { $0 }.joined(separator: "\n"))
             }
         }
