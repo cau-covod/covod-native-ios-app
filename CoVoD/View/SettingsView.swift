@@ -9,13 +9,15 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @Binding var login: Login?
     @Binding var authentication: Authentication?
-    @State var login: Login? = nil
     
-    @State var showLoginModal: Bool = false
+    @Binding var showLoginModal: Bool
     
-    init(authentication: Binding<Authentication?>) {
+    init(login: Binding<Login?>, authentication: Binding<Authentication?>, showLoginModal: Binding<Bool>) {
+        self._login = login
         self._authentication = authentication
+        self._showLoginModal = showLoginModal
     }
     
     var body: some View {
@@ -27,29 +29,15 @@ struct SettingsView: View {
                 .font(.caption)
                 .italic()
         }
-            .sheet(isPresented: $showLoginModal) {
-                LoginView(shown: self.$showLoginModal) { login, then in
-                    OAuth2TokenRequest(login: login).perform {
-                        switch $0 {
-                        case .success(let token):
-                            self.login = login
-                            DispatchQueue.main.async {
-                                self.authentication = Authentication(token: token.accessToken, tokenType: token.tokenType)
-                            }
-                            then(.success(()))
-                        case .failure(let error):
-                            then(.failure(error))
-                        }
-                    }
-                }
-            }
     }
 }
 
 struct SettingsView_Previews: PreviewProvider {
+    @State private static var login: Login? = nil
     @State private static var authentication: Authentication? = nil
+    @State private static var showLoginModal: Bool = false
     
     static var previews: some View {
-        SettingsView(authentication: $authentication)
+        SettingsView(login: $login, authentication: $authentication, showLoginModal: $showLoginModal)
     }
 }

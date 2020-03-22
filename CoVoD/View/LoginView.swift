@@ -14,9 +14,9 @@ struct LoginView: View {
     @Binding private var shown: Bool
     @State private var rawUsername: String = ""
     @State private var rawPassword: String = ""
-    @State private var showingUsernameAlert: Bool = false
-    @State private var showingPasswordAlert: Bool = false
-    @State private var showingLoginErrorAlert: Bool = false
+    @State private var showUsernameAlert: Bool = false
+    @State private var showPasswordAlert: Bool = false
+    @State private var showLoginErrorAlert: Bool = false
     @State private var loginErrorMessage: String? = nil
     
     init(shown: Binding<Bool>, handler: @escaping (Login, @escaping (Result<Void, Error>) -> Void) -> Void) {
@@ -28,20 +28,20 @@ struct LoginView: View {
         NavigationView {
             VStack {
                 TextField("Username", text: $rawUsername)
-                    .alert(isPresented: $showingUsernameAlert) {
+                    .alert(isPresented: $showUsernameAlert) {
                         Alert(title: Text("Please enter a username!"))
                     }
                 SecureField("Password", text: $rawPassword)
-                    .alert(isPresented: $showingPasswordAlert) {
+                    .alert(isPresented: $showPasswordAlert) {
                         Alert(title: Text("Please enter a password!"))
                     }
                 Button(action: {
                     guard !self.rawUsername.isEmpty else {
-                        self.showingUsernameAlert = true
+                        self.showUsernameAlert = true
                         return
                     }
                     guard !self.rawPassword.isEmpty else {
-                        self.showingPasswordAlert = true
+                        self.showPasswordAlert = true
                         return
                     }
                     self.handler(Login(username: self.rawUsername, password: self.rawPassword)) {
@@ -49,10 +49,10 @@ struct LoginView: View {
                             print("\(error)")
                             if let e = error as? LoginError {
                                 self.loginErrorMessage = e.message
-                                self.showingLoginErrorAlert = true
+                                self.showLoginErrorAlert = true
                             } else {
                                 self.loginErrorMessage = nil
-                                self.showingLoginErrorAlert = true
+                                self.showLoginErrorAlert = true
                             }
                         } else {
                            self.shown = false
@@ -61,7 +61,7 @@ struct LoginView: View {
                 }) {
                     Text("Login")
                 }
-                .alert(isPresented: $showingLoginErrorAlert) {
+                .alert(isPresented: $showLoginErrorAlert) {
                     Alert(title: Text(loginErrorMessage ?? "Something went wrong"))
                 }
             }

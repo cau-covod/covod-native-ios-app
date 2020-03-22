@@ -11,7 +11,7 @@ import Dispatch
 
 class ContentViewModel: ObservableObject {
     @Published var courses: [Course] = []
-    @Published var showingCoursesErrorAlert: Bool = false
+    @Published var showCoursesErrorAlert: Bool = false
     @Published var authentication: Authentication? = nil {
         willSet {
             if let auth = newValue {
@@ -23,7 +23,7 @@ class ContentViewModel: ObservableObject {
                             self.courses = feeds.flatMap { $0.courses }
                         case let .failure(error):
                             print(error)
-                            self.showingCoursesErrorAlert = true
+                            self.showCoursesErrorAlert = true
                         }
                     }
                 }

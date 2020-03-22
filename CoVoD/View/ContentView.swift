@@ -11,11 +11,14 @@ import SwiftUI
 struct ContentView: View {
     @State private var selection = 0
     @ObservedObject private var viewModel = ContentViewModel()
+    
+    @State private var login: Login? = nil
+    @State private var showLoginModal: Bool = true
  
     var body: some View {
         TabView(selection: $selection) {
             CoursesView(courses: viewModel.courses)
-                .alert(isPresented: $viewModel.showingCoursesErrorAlert) {
+                .alert(isPresented: $viewModel.showCoursesErrorAlert) {
                     Alert(title: Text("Something went wrong while fetching the courses."))
                 }
                 .tabItem {
@@ -25,7 +28,7 @@ struct ContentView: View {
                     }
                 }
                 .tag(0)
-            SettingsView(authentication: $viewModel.authentication)
+            SettingsView(login: $login, authentication: $viewModel.authentication, showLoginModal: $showLoginModal)
                 .font(.title)
                 .tabItem {
                     VStack {
@@ -35,6 +38,9 @@ struct ContentView: View {
                 }
                 .tag(1)
         }
+            .sheet(isPresented: $showLoginModal) {
+                OAuth2LoginView(login: self.$login, authentication: self.$viewModel.authentication, shown: self.$showLoginModal)
+            }
     }
 }
 
