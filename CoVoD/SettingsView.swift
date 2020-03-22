@@ -21,9 +21,10 @@ struct SettingsView: View {
             Text(login.map { "logged in as \($0.username)" } ?? "not logged in")
                 .font(.caption)
                 .italic()
-        }.sheet(isPresented: $showLoginModal) {
-            Text("Test this modal")
         }
+            .sheet(isPresented: $showLoginModal) {
+                LoginView(model: self.$login, shown: self.$showLoginModal)
+            }
     }
 }
 
