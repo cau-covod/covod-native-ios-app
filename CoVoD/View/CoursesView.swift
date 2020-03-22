@@ -11,15 +11,18 @@ import SwiftUI
 struct CoursesView: View {
     private let courses: [Course]
     
-    init(courses: [Course]) {
+    private let authentication: Authentication?
+    
+    init(courses: [Course], authentication: Authentication?) {
         self.courses = courses
+        self.authentication = authentication
     }
     
     var body: some View {
         NavigationView {
             if !courses.isEmpty {
                 List(courses) { course in
-                    NavigationLink(destination: LecturesView(lectures: course.lectures ?? [])) {
+                    NavigationLink(destination: LecturesView(lectures: course.lectures ?? [], authentication: self.authentication!)) {
                         ListCard(
                             label: course.name ?? "Unnamed course",
                             description: course.description

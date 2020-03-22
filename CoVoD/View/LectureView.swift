@@ -11,12 +11,15 @@ import SwiftUI
 struct LectureView: View {
     private let lecture: Lecture
     
-    init(lecture: Lecture) {
+    private var authentication: Authentication
+    
+    init(lecture: Lecture, authentication: Authentication) {
         self.lecture = lecture
+        self.authentication = authentication
     }
     
     var body: some View {
-        Text("Lecture \(self.lecture.number ?? -1)")
+        PlayerView(url: URL(string: "https://covod.bre4k3r.de/api/v1/lecture/\(lecture.id)/media")!, headers: ["Authorization": "\(authentication.tokenType) \(authentication.token)"])
             .navigationBarTitle("Lecture", displayMode: .inline)
     }
 }

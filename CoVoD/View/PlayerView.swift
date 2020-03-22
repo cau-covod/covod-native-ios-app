@@ -6,19 +6,30 @@
 //  Copyright © 2020 Fredrik. All rights reserved.
 //
 
-import Foundation
+import AVKit
+import UIKit
 import SwiftUI
 
-struct PlayerView: UIViewRepresentable {
+struct PlayerView: UIViewControllerRepresentable {
     private let url: URL
+    private let headers: [String: String]
     
-    init(url: URL) {
+    init(url: URL, headers: [String: String]) {
         self.url = url
+        self.headers = headers
     }
     
-    func updateUIView(_ uiView: PlayerView.UIViewType, context: UIViewRepresentableContext<PlayerView>) {}
+    func updateUIViewController(_ uiViewController: UIViewController, context: UIViewControllerRepresentableContext<PlayerView>) {}
     
-    func makeUIView(context: UIViewRepresentableContext<PlayerView>) -> UIView {
-        return PlayerUIView(frame: .zero, url: url)
+    func makeUIViewController(context: UIViewControllerRepresentableContext<PlayerView>) -> UIViewController {
+        let asset = AVURLAsset(url: url, options: [
+            "AVURLAssetHTTPHeaderFieldsKey": headers
+        ])
+        let item = AVPlayerItem(asset: asset)
+        let player = AVPlayer(playerItem: item)
+        player.play()
+        let vc = AVPlayerViewController()
+        vc.player = player
+        return vc
     }
 }

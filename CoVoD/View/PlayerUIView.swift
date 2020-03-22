@@ -9,13 +9,17 @@
 import UIKit
 import AVKit
 
-class PlayerUIView: UIView {
+class PlayerUIViewController: UIViewController {
     private let playerLayer = AVPlayerLayer()
     
-    init(frame: CGRect, url: URL) {
+    init(frame: CGRect, url: URL, headers: [String: String]) {
         super.init(frame: frame)
         
-        let player = AVPlayer(url: url)
+        let asset = AVURLAsset(url: url, options: [
+            "AVURLAssetHTTPHeaderFieldsKey": headers
+        ])
+        let item = AVPlayerItem(asset: asset)
+        let player = AVPlayer(playerItem: item)
         player.play()
         playerLayer.player = player
         layer.addSublayer(playerLayer)

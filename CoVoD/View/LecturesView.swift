@@ -13,15 +13,18 @@ struct LecturesView: View {
     private let inputDateFormatter = DateFormatter()
     private let outputDateFormatter = DateFormatter()
     
-    init(lectures: [Lecture]) {
+    private let authentication: Authentication
+    
+    init(lectures: [Lecture], authentication: Authentication) {
         self.lectures = lectures
+        self.authentication = authentication
         inputDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
         outputDateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
     }
     
     var body: some View {
         List(lectures) { lecture in
-            NavigationLink(destination: LectureView(lecture: lecture)) {
+            NavigationLink(destination: LectureView(lecture: lecture, authentication: self.authentication)) {
                 ListCard(label: "Lecture \(lecture.number ?? -1)", description: [
                     lecture.description,
                     lecture.createdAt.flatMap(self.inputDateFormatter.date(from:)).map(self.outputDateFormatter.string(from:)),

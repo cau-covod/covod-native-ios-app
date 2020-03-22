@@ -17,7 +17,7 @@ struct ContentView: View {
  
     var body: some View {
         TabView(selection: $selection) {
-            CoursesView(courses: viewModel.courses)
+            CoursesView(courses: viewModel.courses, authentication: viewModel.authentication)
                 .alert(isPresented: $viewModel.showCoursesErrorAlert) {
                     Alert(title: Text("Something went wrong while fetching the courses."))
                 }
