@@ -10,14 +10,22 @@ import SwiftUI
 
 struct LecturesView: View {
     private let lectures: [Lecture]
+    private let inputDateFormatter = DateFormatter()
+    private let outputDateFormatter = DateFormatter()
     
     init(lectures: [Lecture]) {
         self.lectures = lectures
+        inputDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
+        outputDateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
     }
     
     var body: some View {
         List(lectures) { lecture in
-            ListCard(label: "Lecture \(lecture.number ?? -1)", description: lecture.pubTime)
+            ListCard(label: "Lecture \(lecture.number ?? -1)", description: [
+                lecture.description,
+                lecture.createdAt.flatMap(self.inputDateFormatter.date(from:)).map(self.outputDateFormatter.string(from:)),
+                lecture.commentCount.map { "\($0) comments" }
+                ].compactMap { $0 }.joined(separator: "\n"))
         }
             .navigationBarTitle("Lectures")
     }
