@@ -7,7 +7,6 @@
 //
 
 public struct Authentication {
-    public let login: Login
     public let token: String
     public let tokenType: String
 }

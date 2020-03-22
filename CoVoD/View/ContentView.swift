@@ -10,17 +10,14 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selection = 0
-    @State private var courses: [Course] = [
-        Course(id: 0, name: "Algorithms and Data Structures", description: "Algorithmic algorithms and structural structres", lectures: [
-            Lecture(id: 0, number: 0, pubTime: "now", description: "Blub blub"),
-            Lecture(id: 1, number: 0, pubTime: "now", description: "Blub blub"),
-            Lecture(id: 2, number: 0, pubTime: "now", description: "Blub blub")
-        ])
-    ]
+    @ObservedObject private var viewModel = ContentViewModel()
  
     var body: some View {
         TabView(selection: $selection) {
-            CoursesView(courses: courses)
+            CoursesView(courses: viewModel.courses)
+                .alert(isPresented: $viewModel.showingCoursesErrorAlert) {
+                    Alert(title: Text("Something went wrong while fetching the courses."))
+                }
                 .tabItem {
                     VStack {
                         Image(systemName: "tv.fill")
@@ -28,7 +25,7 @@ struct ContentView: View {
                     }
                 }
                 .tag(0)
-            SettingsView()
+            SettingsView(authentication: $viewModel.authentication)
                 .font(.title)
                 .tabItem {
                     VStack {

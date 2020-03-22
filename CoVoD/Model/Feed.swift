@@ -7,9 +7,5 @@
 //
 
 public struct Feed: Codable {
-    public let feed: [CourseList]
-    
-    public struct CourseList: Codable {
-        public let courses: [Course]
-    }
+    public let courses: [Course]
 }

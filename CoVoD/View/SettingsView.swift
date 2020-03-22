@@ -9,15 +9,21 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State var authentication: Authentication? = nil
+    @Binding var authentication: Authentication?
+    @State var login: Login? = nil
+    
     @State var showLoginModal: Bool = false
+    
+    init(authentication: Binding<Authentication?>) {
+        self._authentication = authentication
+    }
     
     var body: some View {
         VStack(spacing: 10.0) {
             Button(action: { self.showLoginModal.toggle() }) {
                 Text("Login")
             }
-            Text(authentication.map { "logged in as \($0.login.username)\ntoken: \($0.token)" } ?? "not logged in")
+            Text(authentication.map { "logged in as \(login!.username)\ntoken: \($0.token)" } ?? "not logged in")
                 .font(.caption)
                 .italic()
         }
@@ -26,7 +32,10 @@ struct SettingsView: View {
                     OAuth2TokenRequest(login: login).perform {
                         switch $0 {
                         case .success(let token):
-                            self.authentication = Authentication(login: login, token: token.accessToken, tokenType: token.tokenType)
+                            self.login = login
+                            DispatchQueue.main.async {
+                                self.authentication = Authentication(token: token.accessToken, tokenType: token.tokenType)
+                            }
                             then(.success(()))
                         case .failure(let error):
                             then(.failure(error))
@@ -38,7 +47,9 @@ struct SettingsView: View {
 }
 
 struct SettingsView_Previews: PreviewProvider {
+    @State private static var authentication: Authentication? = nil
+    
     static var previews: some View {
-        SettingsView()
+        SettingsView(authentication: $authentication)
     }
 }
