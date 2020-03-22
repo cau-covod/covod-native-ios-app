@@ -26,7 +26,7 @@ struct SettingsView: View {
                     OAuth2TokenRequest(login: login).perform {
                         switch $0 {
                         case .success(let token):
-                            self.authentication = Authentication(login: login, token: token.accessToken)
+                            self.authentication = Authentication(login: login, token: token.accessToken, tokenType: token.tokenType)
                             then(.success(()))
                         case .failure(let error):
                             then(.failure(error))

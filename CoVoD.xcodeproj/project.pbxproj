@@ -30,6 +30,7 @@
 		C7FDA75A2426FA170055AE84 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA7592426FA170055AE84 /* HTTPRequest.swift */; };
 		C7FDA75C2426FA520055AE84 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA75B2426FA520055AE84 /* NetworkError.swift */; };
 		C7FDA75E2426FC9C0055AE84 /* OAuth2Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA75D2426FC9C0055AE84 /* OAuth2Token.swift */; };
+		C7FDA7602427017A0055AE84 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA75F2427017A0055AE84 /* APIRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		C7FDA7592426FA170055AE84 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		C7FDA75B2426FA520055AE84 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		C7FDA75D2426FC9C0055AE84 /* OAuth2Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2Token.swift; sourceTree = "<group>"; };
+		C7FDA75F2427017A0055AE84 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				C7FDA7572426FA080055AE84 /* OAuth2TokenRequest.swift */,
+				C7FDA75F2427017A0055AE84 /* APIRequest.swift */,
 				C7FDA7592426FA170055AE84 /* HTTPRequest.swift */,
 				C7FDA75B2426FA520055AE84 /* NetworkError.swift */,
 			);
@@ -334,6 +337,7 @@
 				C7FDA7512426EE550055AE84 /* Feed.swift in Sources */,
 				C7FDA7532426F62D0055AE84 /* LoginError.swift in Sources */,
 				C7FDA74D2426E3280055AE84 /* Login.swift in Sources */,
+				C7FDA7602427017A0055AE84 /* APIRequest.swift in Sources */,
 				C7FDA7582426FA080055AE84 /* OAuth2TokenRequest.swift in Sources */,
 				C7FDA75A2426FA170055AE84 /* HTTPRequest.swift in Sources */,
 				C7733EC32426B427006C863E /* AppDelegate.swift in Sources */,

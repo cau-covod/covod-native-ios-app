@@ -10,12 +10,12 @@ public struct OAuth2Token: Codable {
     public enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
         case expiresIn = "expires_in"
-        case scope
         case tokenType = "token_type"
+        case scope
     }
     
     public let accessToken: String
     public let expiresIn: Int
+    public let tokenType: String
     public let scope: String?
-    public let tokenType: String?
 }
