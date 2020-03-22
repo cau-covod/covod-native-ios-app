@@ -20,6 +20,8 @@
 		C7FDA7452426D82C0055AE84 /* CoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA7442426D82B0055AE84 /* CoursesView.swift */; };
 		C7FDA7472426DA150055AE84 /* LecturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA7462426DA150055AE84 /* LecturesView.swift */; };
 		C7FDA7492426DB500055AE84 /* ListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA7482426DB500055AE84 /* ListCard.swift */; };
+		C7FDA74B2426E2B60055AE84 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA74A2426E2B60055AE84 /* SettingsView.swift */; };
+		C7FDA74D2426E3280055AE84 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA74C2426E3280055AE84 /* Login.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		C7FDA7442426D82B0055AE84 /* CoursesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesView.swift; sourceTree = "<group>"; };
 		C7FDA7462426DA150055AE84 /* LecturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LecturesView.swift; sourceTree = "<group>"; };
 		C7FDA7482426DB500055AE84 /* ListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCard.swift; sourceTree = "<group>"; };
+		C7FDA74A2426E2B60055AE84 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C7FDA74C2426E3280055AE84 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +120,7 @@
 				C7FDA7442426D82B0055AE84 /* CoursesView.swift */,
 				C7FDA7462426DA150055AE84 /* LecturesView.swift */,
 				C7FDA7482426DB500055AE84 /* ListCard.swift */,
+				C7FDA74A2426E2B60055AE84 /* SettingsView.swift */,
 				C7733EC82426B42D006C863E /* Assets.xcassets */,
 				C7733ECD2426B42D006C863E /* LaunchScreen.storyboard */,
 				C7733ED02426B42D006C863E /* Info.plist */,
@@ -155,6 +160,7 @@
 			children = (
 				C7C3F1C52426BA6500787E98 /* Course.swift */,
 				C7C3F1C72426BADE00787E98 /* Lecture.swift */,
+				C7FDA74C2426E3280055AE84 /* Login.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -291,8 +297,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7C3F1C62426BA6500787E98 /* Course.swift in Sources */,
+				C7FDA74D2426E3280055AE84 /* Login.swift in Sources */,
 				C7733EC32426B427006C863E /* AppDelegate.swift in Sources */,
 				C7733EC52426B427006C863E /* SceneDelegate.swift in Sources */,
+				C7FDA74B2426E2B60055AE84 /* SettingsView.swift in Sources */,
 				C7733EC72426B427006C863E /* ContentView.swift in Sources */,
 				C7C3F1C82426BADE00787E98 /* Lecture.swift in Sources */,
 				C7FDA7472426DA150055AE84 /* LecturesView.swift in Sources */,

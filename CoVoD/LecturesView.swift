@@ -8,14 +8,14 @@
 
 import SwiftUI
 
-public struct LecturesView: View {
+struct LecturesView: View {
     private let lectures: [Lecture]
     
     init(lectures: [Lecture]) {
         self.lectures = lectures
     }
     
-    public var body: some View {
+    var body: some View {
         List(lectures) { lecture in
             ListCard(label: "Lecture \(lecture.number ?? -1)", description: lecture.pubTime)
         }
