@@ -25,6 +25,11 @@
 		C7FDA74F2426E6680055AE84 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA74E2426E6680055AE84 /* LoginView.swift */; };
 		C7FDA7512426EE550055AE84 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA7502426EE550055AE84 /* Feed.swift */; };
 		C7FDA7532426F62D0055AE84 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA7522426F62D0055AE84 /* LoginError.swift */; };
+		C7FDA7552426F9170055AE84 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA7542426F9170055AE84 /* Authentication.swift */; };
+		C7FDA7582426FA080055AE84 /* OAuth2TokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA7572426FA080055AE84 /* OAuth2TokenRequest.swift */; };
+		C7FDA75A2426FA170055AE84 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA7592426FA170055AE84 /* HTTPRequest.swift */; };
+		C7FDA75C2426FA520055AE84 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA75B2426FA520055AE84 /* NetworkError.swift */; };
+		C7FDA75E2426FC9C0055AE84 /* OAuth2Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA75D2426FC9C0055AE84 /* OAuth2Token.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +74,11 @@
 		C7FDA74E2426E6680055AE84 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		C7FDA7502426EE550055AE84 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		C7FDA7522426F62D0055AE84 /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
+		C7FDA7542426F9170055AE84 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		C7FDA7572426FA080055AE84 /* OAuth2TokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2TokenRequest.swift; sourceTree = "<group>"; };
+		C7FDA7592426FA170055AE84 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
+		C7FDA75B2426FA520055AE84 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		C7FDA75D2426FC9C0055AE84 /* OAuth2Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2Token.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				C7C3F1C42426B73900787E98 /* Model */,
+				C7FDA7562426F9B20055AE84 /* Request */,
 				C7733EC22426B427006C863E /* AppDelegate.swift */,
 				C7733EC42426B427006C863E /* SceneDelegate.swift */,
 				C7733EC62426B427006C863E /* ContentView.swift */,
@@ -170,8 +181,20 @@
 				C7C3F1C72426BADE00787E98 /* Lecture.swift */,
 				C7FDA74C2426E3280055AE84 /* Login.swift */,
 				C7FDA7502426EE550055AE84 /* Feed.swift */,
+				C7FDA7542426F9170055AE84 /* Authentication.swift */,
+				C7FDA75D2426FC9C0055AE84 /* OAuth2Token.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C7FDA7562426F9B20055AE84 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				C7FDA7572426FA080055AE84 /* OAuth2TokenRequest.swift */,
+				C7FDA7592426FA170055AE84 /* HTTPRequest.swift */,
+				C7FDA75B2426FA520055AE84 /* NetworkError.swift */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,13 +328,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7FDA75C2426FA520055AE84 /* NetworkError.swift in Sources */,
 				C7C3F1C62426BA6500787E98 /* Course.swift in Sources */,
+				C7FDA75E2426FC9C0055AE84 /* OAuth2Token.swift in Sources */,
 				C7FDA7512426EE550055AE84 /* Feed.swift in Sources */,
 				C7FDA7532426F62D0055AE84 /* LoginError.swift in Sources */,
 				C7FDA74D2426E3280055AE84 /* Login.swift in Sources */,
+				C7FDA7582426FA080055AE84 /* OAuth2TokenRequest.swift in Sources */,
+				C7FDA75A2426FA170055AE84 /* HTTPRequest.swift in Sources */,
 				C7733EC32426B427006C863E /* AppDelegate.swift in Sources */,
 				C7733EC52426B427006C863E /* SceneDelegate.swift in Sources */,
 				C7FDA74B2426E2B60055AE84 /* SettingsView.swift in Sources */,
+				C7FDA7552426F9170055AE84 /* Authentication.swift in Sources */,
 				C7733EC72426B427006C863E /* ContentView.swift in Sources */,
 				C7C3F1C82426BADE00787E98 /* Lecture.swift in Sources */,
 				C7FDA7472426DA150055AE84 /* LecturesView.swift in Sources */,

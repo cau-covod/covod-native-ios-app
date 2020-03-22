@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct LoginView: View {
-    private let handler: (Login) throws -> Void
+    private let handler: (Login, @escaping (Result<Void, Error>) -> Void) -> Void
     
     @Binding private var shown: Bool
     @State private var rawUsername: String = ""
@@ -19,7 +19,7 @@ struct LoginView: View {
     @State private var showingLoginErrorAlert: Bool = false
     @State private var loginErrorMessage: String? = nil
     
-    init(shown: Binding<Bool>, handler: @escaping (Login) throws -> Void) {
+    init(shown: Binding<Bool>, handler: @escaping (Login, @escaping (Result<Void, Error>) -> Void) -> Void) {
         self.handler = handler
         self._shown = shown
     }
@@ -44,15 +44,19 @@ struct LoginView: View {
                         self.showingPasswordAlert = true
                         return
                     }
-                    do {
-                        try self.handler(Login(username: self.rawUsername, password: self.rawPassword))
-                        self.shown = false
-                    } catch let e as LoginError {
-                        self.loginErrorMessage = e.message
-                        self.showingLoginErrorAlert = true
-                    } catch {
-                        self.loginErrorMessage = nil
-                        self.showingLoginErrorAlert = true
+                    self.handler(Login(username: self.rawUsername, password: self.rawPassword)) {
+                        if case let .failure(error) = $0 {
+                            print("\(error)")
+                            if let e = error as? LoginError {
+                                self.loginErrorMessage = e.message
+                                self.showingLoginErrorAlert = true
+                            } else {
+                                self.loginErrorMessage = nil
+                                self.showingLoginErrorAlert = true
+                            }
+                        } else {
+                           self.shown = false
+                       }
                     }
                 }) {
                     Text("Login")
@@ -76,6 +80,6 @@ struct LoginView_Previews: PreviewProvider {
     @State private static var shown: Bool = true
     
     static var previews: some View {
-        LoginView(shown: $shown) { _ in }
+        LoginView(shown: $shown) { _, then in then(.success(())) }
     }
 }
