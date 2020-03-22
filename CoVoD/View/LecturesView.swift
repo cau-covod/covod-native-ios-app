@@ -21,11 +21,13 @@ struct LecturesView: View {
     
     var body: some View {
         List(lectures) { lecture in
-            ListCard(label: "Lecture \(lecture.number ?? -1)", description: [
-                lecture.description,
-                lecture.createdAt.flatMap(self.inputDateFormatter.date(from:)).map(self.outputDateFormatter.string(from:)),
-                lecture.commentCount.map { "\($0) comments" }
+            NavigationLink(destination: LectureView(lecture: lecture)) {
+                ListCard(label: "Lecture \(lecture.number ?? -1)", description: [
+                    lecture.description,
+                    lecture.createdAt.flatMap(self.inputDateFormatter.date(from:)).map(self.outputDateFormatter.string(from:)),
+                    lecture.commentCount.map { "\($0) comments" }
                 ].compactMap { $0 }.joined(separator: "\n"))
+            }
         }
             .navigationBarTitle("Lectures")
     }

@@ -17,7 +17,7 @@ public struct APIRequest<T> where T: Decodable {
     
     public func perform(then: @escaping (Result<T, Error>) -> Void) {
         do {
-            let request = try HTTPRequest(scheme: "http", host: "git.bre4k3r.de", port: 22022, path: "/api/v1\(endpoint)", headers: ["Authorization": "\(authentication.tokenType) \(authentication.token)"])
+            let request = try HTTPRequest(scheme: "https", host: "covod.bre4k3r.de", path: "/api/v1\(endpoint)", headers: ["Authorization": "\(authentication.tokenType) \(authentication.token)"])
             request.fetchJSONAsync(as: T.self, then: then)
         } catch {
             then(.failure(error))
