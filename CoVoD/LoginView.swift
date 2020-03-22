@@ -9,17 +9,18 @@
 import SwiftUI
 
 struct LoginView: View {
-    @Binding private var model: Login?
-    @Binding private var shown: Bool
+    private let handler: (Login) throws -> Void
     
+    @Binding private var shown: Bool
     @State private var rawUsername: String = ""
     @State private var rawPassword: String = ""
-    
     @State private var showingUsernameAlert: Bool = false
     @State private var showingPasswordAlert: Bool = false
+    @State private var showingLoginErrorAlert: Bool = false
+    @State private var loginErrorMessage: String? = nil
     
-    init(model: Binding<Login?>, shown: Binding<Bool>) {
-        self._model = model
+    init(shown: Binding<Bool>, handler: @escaping (Login) throws -> Void) {
+        self.handler = handler
         self._shown = shown
     }
     
@@ -43,10 +44,21 @@ struct LoginView: View {
                         self.showingPasswordAlert = true
                         return
                     }
-                    self.model = Login(username: self.rawUsername, password: self.rawPassword)
-                    self.shown = false
+                    do {
+                        try self.handler(Login(username: self.rawUsername, password: self.rawPassword))
+                        self.shown = false
+                    } catch let e as LoginError {
+                        self.loginErrorMessage = e.message
+                        self.showingLoginErrorAlert = true
+                    } catch {
+                        self.loginErrorMessage = nil
+                        self.showingLoginErrorAlert = true
+                    }
                 }) {
                     Text("Login")
+                }
+                .alert(isPresented: $showingLoginErrorAlert) {
+                    Alert(title: Text(loginErrorMessage ?? "Something went wrong"))
                 }
             }
                 .padding(25.0)
@@ -64,6 +76,6 @@ struct LoginView_Previews: PreviewProvider {
     @State private static var shown: Bool = true
     
     static var previews: some View {
-        LoginView(model: $login, shown: $shown)
+        LoginView(shown: $shown) { _ in }
     }
 }

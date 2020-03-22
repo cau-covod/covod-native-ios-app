@@ -23,7 +23,9 @@ struct SettingsView: View {
                 .italic()
         }
             .sheet(isPresented: $showLoginModal) {
-                LoginView(model: self.$login, shown: self.$showLoginModal)
+                LoginView(shown: self.$showLoginModal) {
+                    self.login = $0
+                }
             }
     }
 }
