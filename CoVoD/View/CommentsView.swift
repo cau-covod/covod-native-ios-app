@@ -28,6 +28,7 @@ struct CommentsView: View {
                         Text("Post")
                     }
                 }
+                    .padding(5.0)
                 List {
                     ForEach(viewModel.comments) { comment in
                         Section {

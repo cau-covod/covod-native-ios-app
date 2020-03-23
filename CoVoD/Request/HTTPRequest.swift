@@ -27,7 +27,7 @@ public struct HTTPRequest {
         headers: [String: String] = [:],
         body customBody: String? = nil
     ) throws {
-        let isPost = method == "POST"
+        let isPostLike = method == "POST" || method == "PUT"
 
         var components = URLComponents()
         components.scheme = scheme
@@ -41,7 +41,7 @@ public struct HTTPRequest {
         
         let body: Data
         
-        if isPost && !query.isEmpty {
+        if isPostLike && !query.isEmpty {
             body = components.percentEncodedQuery?.data(using: .utf8) ?? .init()
             components.queryItems = []
         } else {
@@ -49,11 +49,12 @@ public struct HTTPRequest {
         }
         
         guard let url = components.url else { throw NetworkError.couldNotCreateURL(components) }
+        print("Sending \(method) request to \(url.absoluteString) with body \(String(data: body, encoding: .utf8).map { "'\($0)'" } ?? "?")")
         
         request = URLRequest(url: url)
         request.httpMethod = method
         
-        if isPost {
+        if isPostLike {
             if !query.isEmpty {
                 request.setValue("application/x-www-form-urlencoded;charset=UTF-8", forHTTPHeaderField: "Content-Type")
             }

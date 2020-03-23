@@ -24,8 +24,11 @@ public struct APIRequest<T> where T: Decodable {
     public func perform(then: @escaping (Result<T, Error>) -> Void) {
         do {
             let request = try HTTPRequest(scheme: "https", host: "covod.bre4k3r.de", path: "/api/v1\(endpoint)", method: method, query: query, headers: ["Authorization": "\(authentication.tokenType) \(authentication.token)"])
+            
             if T.self == Empty.self {
                 request.runAsync { then($0.map({ (_: Data) in Empty() } as! (Data) -> T)) }
+            } else if T.self == String.self {
+                request.fetchUTF8Async { then($0.map({ (s: String) in s } as! (String) -> T)) }
             } else {
                 request.fetchJSONAsync(as: T.self, then: then)
             }

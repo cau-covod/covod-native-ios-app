@@ -23,7 +23,7 @@ public class CommentsViewModel: ObservableObject {
     }
     
     public func submit(comment text: String) {
-        APIRequest<Empty>(authentication: authentication, endpoint: "/lecture/\(lecture.id)/comments", method: "PUT", query: ["text": text]).perform {
+        APIRequest<String>(authentication: authentication, endpoint: "/lecture/\(lecture.id)/comments", method: "PUT", query: ["text": text]).perform {
             print("\($0)")
             self.updateComments()
         }
