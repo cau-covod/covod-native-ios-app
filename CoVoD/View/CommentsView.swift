@@ -10,20 +10,29 @@ import SwiftUI
 
 struct CommentsView: View {
     @ObservedObject private var viewModel: CommentsViewModel
+    @State private var commentText: String = ""
     
     init(lecture: Lecture, authentication: Authentication) {
         viewModel = CommentsViewModel(lecture: lecture, authentication: authentication)
-        
     }
     
     var body: some View {
         VStack { // TODO: Hack that lets Swift interpret the following closure as a function builder
             if !viewModel.comments.isEmpty {
+                HStack {
+                    TextField("Enter Comment", text: $commentText)
+                    Button(action: {
+                        self.viewModel.submit(comment: self.commentText)
+                        self.commentText = ""
+                    }) {
+                        Text("Post")
+                    }
+                }
                 List {
                     ForEach(viewModel.comments) { comment in
                         Section {
                             self.viewFor(comment: comment)
-                            ForEach(comment.flatReplies ?? []) { reply in
+                            ForEach(comment.flatReplies) { reply in
                                 self.viewFor(comment: reply)
                             }
                         }
