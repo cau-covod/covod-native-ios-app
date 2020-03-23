@@ -17,18 +17,18 @@ struct CommentsView: View {
     }
     
     var body: some View {
-        VStack { // TODO: Hack that lets Swift interpret the following closure as a function builder
-            if !viewModel.comments.isEmpty {
-                HStack {
-                    TextField("Enter Comment", text: $commentText)
-                    Button(action: {
-                        self.viewModel.submit(comment: self.commentText)
-                        self.commentText = ""
-                    }) {
-                        Text("Post")
-                    }
+        VStack {
+            HStack {
+                TextField("Enter Comment", text: $commentText)
+                Button(action: {
+                    self.viewModel.submit(comment: self.commentText)
+                    self.commentText = ""
+                }) {
+                    Text("Post")
                 }
-                    .padding(5.0)
+            }
+                .padding(5.0)
+            if !viewModel.comments.isEmpty {
                 List {
                     ForEach(viewModel.comments) { comment in
                         Section {
