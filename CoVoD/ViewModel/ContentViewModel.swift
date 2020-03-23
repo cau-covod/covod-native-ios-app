@@ -8,6 +8,9 @@
 
 import Combine
 import Dispatch
+import Logging
+
+fileprivate let log = Logger(label: "ContentViewModel")
 
 class ContentViewModel: ObservableObject {
     @Published var courses: [Course] = []
@@ -16,7 +19,7 @@ class ContentViewModel: ObservableObject {
         willSet {
             if let auth = newValue {
                 APIRequest<[Feed]>(authentication: auth, endpoint: "/user/feed").perform { result in
-                    print("Fetched user feed")
+                    log.info("Fetched user feed")
                     DispatchQueue.main.async {
                         switch result {
                         case let .success(feeds):
@@ -28,7 +31,7 @@ class ContentViewModel: ObservableObject {
                     }
                 }
             } else {
-                print("Resetting user feed")
+                log.info("Resetting user feed")
                 courses = []
             }
         }

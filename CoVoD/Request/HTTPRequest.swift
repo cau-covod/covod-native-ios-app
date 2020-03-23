@@ -6,6 +6,7 @@
 //  Copyright © 2020 Fredrik. All rights reserved.
 //
 
+import Logging
 import Foundation
 #if canImport(FoundationNetworking)
 import FoundationNetworking
@@ -13,6 +14,8 @@ import FoundationNetworking
 #if canImport(FoundationXML)
 import FoundationXML
 #endif
+
+fileprivate let log = Logger(label: "HTTPRequest")
 
 public struct HTTPRequest {
     private var request: URLRequest
@@ -49,7 +52,7 @@ public struct HTTPRequest {
         }
         
         guard let url = components.url else { throw NetworkError.couldNotCreateURL(components) }
-        print("Sending \(method) request to \(url.absoluteString) with body \(String(data: body, encoding: .utf8).map { "'\($0)'" } ?? "?")")
+        log.info("Sending \(method) request to \(url.absoluteString) with body \(String(data: body, encoding: .utf8).map { "'\($0)'" } ?? "?")")
         
         request = URLRequest(url: url)
         request.httpMethod = method
