@@ -19,7 +19,7 @@ public struct OAuth2TokenRequest {
         clientId: String = "PPDPDvXf7bkd5bDLVhttUIxn",
         clientName: String = "app",
         clientSecret: String = "qvU7ckxCxYZBNfIItVRtPp5mML9UxnTu4M31migU9FYXTj13",
-        scope: String = "view",
+        scope: String = "view comment",
         login: Login
     ) {
         self.clientId = clientId

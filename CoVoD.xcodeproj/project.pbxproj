@@ -22,6 +22,10 @@
 		C7D04B832428009300CE5BFE /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D04B822428009300CE5BFE /* PlayerView.swift */; };
 		C7D04B87242827E000CE5BFE /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D04B86242827E000CE5BFE /* CommentsView.swift */; };
 		C7D04B8A242829A200CE5BFE /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D04B89242829A200CE5BFE /* StringUtils.swift */; };
+		C7D04B8C24282B1700CE5BFE /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D04B8B24282B1700CE5BFE /* Comments.swift */; };
+		C7D04B8E24282B5B00CE5BFE /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D04B8D24282B5B00CE5BFE /* Comment.swift */; };
+		C7D04B9024282C8000CE5BFE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D04B8F24282C8000CE5BFE /* User.swift */; };
+		C7D04B922428350300CE5BFE /* CommentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D04B912428350300CE5BFE /* CommentsViewModel.swift */; };
 		C7FDA7452426D82C0055AE84 /* CoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA7442426D82B0055AE84 /* CoursesView.swift */; };
 		C7FDA7472426DA150055AE84 /* LecturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA7462426DA150055AE84 /* LecturesView.swift */; };
 		C7FDA7492426DB500055AE84 /* ListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FDA7482426DB500055AE84 /* ListCard.swift */; };
@@ -78,6 +82,10 @@
 		C7D04B822428009300CE5BFE /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		C7D04B86242827E000CE5BFE /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		C7D04B89242829A200CE5BFE /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		C7D04B8B24282B1700CE5BFE /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
+		C7D04B8D24282B5B00CE5BFE /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		C7D04B8F24282C8000CE5BFE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C7D04B912428350300CE5BFE /* CommentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewModel.swift; sourceTree = "<group>"; };
 		C7FDA7442426D82B0055AE84 /* CoursesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesView.swift; sourceTree = "<group>"; };
 		C7FDA7462426DA150055AE84 /* LecturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LecturesView.swift; sourceTree = "<group>"; };
 		C7FDA7482426DB500055AE84 /* ListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCard.swift; sourceTree = "<group>"; };
@@ -193,6 +201,9 @@
 				C7FDA7502426EE550055AE84 /* Feed.swift */,
 				C7FDA7542426F9170055AE84 /* Authentication.swift */,
 				C7FDA75D2426FC9C0055AE84 /* OAuth2Token.swift */,
+				C7D04B8B24282B1700CE5BFE /* Comments.swift */,
+				C7D04B8D24282B5B00CE5BFE /* Comment.swift */,
+				C7D04B8F24282C8000CE5BFE /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -220,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				C7FDA76324270A1C0055AE84 /* ContentViewModel.swift */,
+				C7D04B912428350300CE5BFE /* CommentsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -375,9 +387,11 @@
 			files = (
 				C7FDA75C2426FA520055AE84 /* NetworkError.swift in Sources */,
 				C7D04B7F2427FD8900CE5BFE /* OAuth2LoginView.swift in Sources */,
+				C7D04B922428350300CE5BFE /* CommentsViewModel.swift in Sources */,
 				C7C3F1C62426BA6500787E98 /* Course.swift in Sources */,
 				C7FDA75E2426FC9C0055AE84 /* OAuth2Token.swift in Sources */,
 				C7FDA7512426EE550055AE84 /* Feed.swift in Sources */,
+				C7D04B8C24282B1700CE5BFE /* Comments.swift in Sources */,
 				C7FDA76424270A1C0055AE84 /* ContentViewModel.swift in Sources */,
 				C7D04B8A242829A200CE5BFE /* StringUtils.swift in Sources */,
 				C7FDA7532426F62D0055AE84 /* LoginError.swift in Sources */,
@@ -392,11 +406,13 @@
 				C7FDA7552426F9170055AE84 /* Authentication.swift in Sources */,
 				C7733EC72426B427006C863E /* ContentView.swift in Sources */,
 				C7C3F1C82426BADE00787E98 /* Lecture.swift in Sources */,
+				C7D04B9024282C8000CE5BFE /* User.swift in Sources */,
 				C7D04B812427FFCF00CE5BFE /* LectureView.swift in Sources */,
 				C7FDA7472426DA150055AE84 /* LecturesView.swift in Sources */,
 				C7D04B832428009300CE5BFE /* PlayerView.swift in Sources */,
 				C7FDA74F2426E6680055AE84 /* LoginView.swift in Sources */,
 				C7FDA7452426D82C0055AE84 /* CoursesView.swift in Sources */,
+				C7D04B8E24282B5B00CE5BFE /* Comment.swift in Sources */,
 				C7FDA7492426DB500055AE84 /* ListCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

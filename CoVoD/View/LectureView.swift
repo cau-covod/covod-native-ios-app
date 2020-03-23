@@ -21,7 +21,7 @@ struct LectureView: View {
     var body: some View {
         VStack {
             PlayerView(url: URL(string: "https://covod.bre4k3r.de/api/v1/lecture/\(lecture.id)/media")!, headers: ["Authorization": "\(authentication.tokenType) \(authentication.token)"])
-            CommentsView(lecture: lecture)
+            CommentsView(lecture: lecture, authentication: authentication)
         }
             .navigationBarTitle("Lecture", displayMode: .inline)
     }

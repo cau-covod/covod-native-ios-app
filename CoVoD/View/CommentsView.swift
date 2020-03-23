@@ -9,13 +9,34 @@
 import SwiftUI
 
 struct CommentsView: View {
-    private var lecture: Lecture
+    @ObservedObject private var viewModel: CommentsViewModel
     
-    init(lecture: Lecture) {
-        self.lecture = lecture
+    init(lecture: Lecture, authentication: Authentication) {
+        viewModel = CommentsViewModel(lecture: lecture, authentication: authentication)
+        
     }
     
     var body: some View {
-        Text("\(lecture.commentCount ?? 0) \("comment".pluralize(with: lecture.commentCount ?? 0))")
+        VStack { // TODO: Hack that lets Swift interpret the following closure as a function builder
+            if !viewModel.comments.isEmpty {
+                List {
+                    ForEach(viewModel.comments) { comment in
+                        Section {
+                            self.viewFor(comment: comment)
+                            ForEach(comment.flatReplies ?? []) { reply in
+                                self.viewFor(comment: reply)
+                            }
+                        }
+                    }
+                }
+                    .listStyle(GroupedListStyle())
+            } else {
+                Text("\(viewModel.lecture.commentCount ?? 0) \("comment".pluralize(with: viewModel.lecture.commentCount ?? 0))")
+            }
+        }
+    }
+    
+    private func viewFor(comment: Comment) -> some View {
+        return Text(comment.text.map { "\(comment.user?.username ?? "Anonymous user"): \($0)" } ?? "no text")
     }
 }
