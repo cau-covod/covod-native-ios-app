@@ -26,7 +26,7 @@ struct OAuth2LoginView: View {
                 case .success(let token):
                     self.login = login
                     DispatchQueue.main.async {
-                        self.authentication = ServerAuthentication(serverHost: login.serverHost, serverPort: login.serverPort, token: token.accessToken, tokenType: token.tokenType)
+                        self.authentication = ServerAuthentication(serverScheme: login.serverScheme, serverHost: login.serverHost, serverPort: login.serverPort, token: token.accessToken, tokenType: token.tokenType)
                     }
                     then(.success(()))
                 case .failure(let error):

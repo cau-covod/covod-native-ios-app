@@ -7,6 +7,7 @@
 //
 
 public struct ServerLogin {
+    public let serverScheme: String
     public let serverHost: String
     public let serverPort: Int
     public let username: String

@@ -8,13 +8,11 @@
 
 import SwiftUI
 
-fileprivate let hostPortPattern = try! Regex(from: "([^:\\a]+):(\\d+)")
-
 struct LoginView: View {
     private let handler: (ServerLogin, @escaping (Result<Void, Error>) -> Void) -> Void
     
     @Binding private var shown: Bool
-    @State private var rawServerHostPort: String = "covod.bre4k3r.de:443"
+    @State private var rawServerUrl: String = "https://covod.bre4k3r.de:443"
     @State private var rawUsername: String = ""
     @State private var rawPassword: String = ""
     @State private var showServerAlert: Bool = false
@@ -31,9 +29,9 @@ struct LoginView: View {
     var body: some View {
         NavigationView {
             VStack {
-                TextField("Server", text: $rawServerHostPort)
+                TextField("Server", text: $rawServerUrl)
                     .alert(isPresented: $showServerAlert) {
-                        Alert(title: Text("Please enter a valid server host/port!"))
+                        Alert(title: Text("Please enter a valid server URL!"))
                     }
                 TextField("Username", text: $rawUsername)
                     .alert(isPresented: $showUsernameAlert) {
@@ -44,7 +42,7 @@ struct LoginView: View {
                         Alert(title: Text("Please enter a password!"))
                     }
                 Button(action: {
-                    guard let parsedHostPort = hostPortPattern.firstGroups(in: self.rawServerHostPort) else {
+                    guard let parsedUrl = URL(string: self.rawServerUrl), let scheme = parsedUrl.scheme, let host = parsedUrl.host, let port = parsedUrl.port else {
                         self.showServerAlert = true
                         return
                     }
@@ -57,8 +55,9 @@ struct LoginView: View {
                         return
                     }
                     self.handler(ServerLogin(
-                        serverHost: parsedHostPort[1],
-                        serverPort: Int(parsedHostPort[2]) ?? 443,
+                        serverScheme: scheme,
+                        serverHost: host,
+                        serverPort: port,
                         username: self.rawUsername,
                         password: self.rawPassword
                     )) {

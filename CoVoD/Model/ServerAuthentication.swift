@@ -7,6 +7,7 @@
 //
 
 public struct ServerAuthentication {
+    public let serverScheme: String
     public let serverHost: String
     public let serverPort: Int
     public let token: String
