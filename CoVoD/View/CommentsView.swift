@@ -12,7 +12,7 @@ struct CommentsView: View {
     @ObservedObject private var viewModel: CommentsViewModel
     @State private var commentText: String = ""
     
-    init(lecture: Lecture, authentication: Authentication) {
+    init(lecture: Lecture, authentication: ServerAuthentication) {
         viewModel = CommentsViewModel(lecture: lecture, authentication: authentication)
     }
     

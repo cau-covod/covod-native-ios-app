@@ -10,12 +10,12 @@ import Combine
 import Dispatch
 
 public class CommentsViewModel: ObservableObject {
-    private let authentication: Authentication
+    private let authentication: ServerAuthentication
     
     @Published public var comments: [Comment] = []
     @Published public var lecture: Lecture
     
-    public init(lecture: Lecture, authentication: Authentication) {
+    public init(lecture: Lecture, authentication: ServerAuthentication) {
         self.authentication = authentication
         self.lecture = lecture
         

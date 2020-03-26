@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @Binding var login: Login?
-    @Binding var authentication: Authentication?
+    @Binding var login: ServerLogin?
+    @Binding var authentication: ServerAuthentication?
     
     @Binding var showLoginModal: Bool
     
-    init(login: Binding<Login?>, authentication: Binding<Authentication?>, showLoginModal: Binding<Bool>) {
+    init(login: Binding<ServerLogin?>, authentication: Binding<ServerAuthentication?>, showLoginModal: Binding<Bool>) {
         self._login = login
         self._authentication = authentication
         self._showLoginModal = showLoginModal
@@ -33,8 +33,8 @@ struct SettingsView: View {
 }
 
 struct SettingsView_Previews: PreviewProvider {
-    @State private static var login: Login? = nil
-    @State private static var authentication: Authentication? = nil
+    @State private static var login: ServerLogin? = nil
+    @State private static var authentication: ServerAuthentication? = nil
     @State private static var showLoginModal: Bool = false
     
     static var previews: some View {

@@ -11,9 +11,9 @@ import SwiftUI
 struct LectureView: View {
     private let lecture: Lecture
     
-    private var authentication: Authentication
+    private var authentication: ServerAuthentication
     
-    init(lecture: Lecture, authentication: Authentication) {
+    init(lecture: Lecture, authentication: ServerAuthentication) {
         self.lecture = lecture
         self.authentication = authentication
     }

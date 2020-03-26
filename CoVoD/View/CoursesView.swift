@@ -11,9 +11,9 @@ import SwiftUI
 struct CoursesView: View {
     private let courses: [Course]
     
-    private let authentication: Authentication?
+    private let authentication: ServerAuthentication?
     
-    init(courses: [Course], authentication: Authentication?) {
+    init(courses: [Course], authentication: ServerAuthentication?) {
         self.courses = courses
         self.authentication = authentication
     }

@@ -13,9 +13,9 @@ struct LecturesView: View {
     private let inputDateFormatter = DateFormatter()
     private let outputDateFormatter = DateFormatter()
     
-    private let authentication: Authentication
+    private let authentication: ServerAuthentication
     
-    init(lectures: [Lecture], authentication: Authentication) {
+    init(lectures: [Lecture], authentication: ServerAuthentication) {
         self.lectures = lectures
         self.authentication = authentication
         inputDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"

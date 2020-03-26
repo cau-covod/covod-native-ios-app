@@ -9,12 +9,12 @@
 import Foundation
 
 public struct APIRequest<T> where T: Decodable {
-    private let authentication: Authentication
+    private let authentication: ServerAuthentication
     private let endpoint: String
     private let method: String
     private let query: [String: String]
     
-    public init(authentication: Authentication, endpoint: String, method: String = "GET", query: [String: String] = [:]) {
+    public init(authentication: ServerAuthentication, endpoint: String, method: String = "GET", query: [String: String] = [:]) {
         self.authentication = authentication
         self.endpoint = endpoint
         self.method = method
@@ -23,7 +23,7 @@ public struct APIRequest<T> where T: Decodable {
     
     public func perform(then: @escaping (Result<T, Error>) -> Void) {
         do {
-            let request = try HTTPRequest(scheme: "https", host: "covod.bre4k3r.de", path: "/api/v1\(endpoint)", method: method, query: query, headers: ["Authorization": "\(authentication.tokenType) \(authentication.token)"])
+            let request = try HTTPRequest(scheme: "https", host: authentication.serverHost, port: authentication.serverPort, path: "/api/v1\(endpoint)", method: method, query: query, headers: ["Authorization": "\(authentication.tokenType) \(authentication.token)"])
             
             if T.self == Empty.self {
                 request.runAsync { then($0.map({ (_: Data) in Empty() } as! (Data) -> T)) }

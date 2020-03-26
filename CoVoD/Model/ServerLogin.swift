@@ -6,7 +6,9 @@
 //  Copyright © 2020 Fredrik. All rights reserved.
 //
 
-public struct Login {
+public struct ServerLogin {
+    public let serverHost: String
+    public let serverPort: Int
     public let username: String
     public let password: String
 }

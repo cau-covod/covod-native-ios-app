@@ -12,7 +12,7 @@ struct ContentView: View {
     @State private var selection = 0
     @ObservedObject private var viewModel = ContentViewModel()
     
-    @State private var login: Login? = nil
+    @State private var login: ServerLogin? = nil
     @State private var showLoginModal: Bool = true
  
     var body: some View {

@@ -8,18 +8,22 @@
 
 import SwiftUI
 
+fileprivate let hostPortPattern = try! Regex(from: "([^:\\a]+):(\\d+)")
+
 struct LoginView: View {
-    private let handler: (Login, @escaping (Result<Void, Error>) -> Void) -> Void
+    private let handler: (ServerLogin, @escaping (Result<Void, Error>) -> Void) -> Void
     
     @Binding private var shown: Bool
+    @State private var rawServerHostPort: String = "covod.bre4k3r.de:443"
     @State private var rawUsername: String = ""
     @State private var rawPassword: String = ""
+    @State private var showServerAlert: Bool = false
     @State private var showUsernameAlert: Bool = false
     @State private var showPasswordAlert: Bool = false
     @State private var showLoginErrorAlert: Bool = false
     @State private var loginErrorMessage: String? = nil
     
-    init(shown: Binding<Bool>, handler: @escaping (Login, @escaping (Result<Void, Error>) -> Void) -> Void) {
+    init(shown: Binding<Bool>, handler: @escaping (ServerLogin, @escaping (Result<Void, Error>) -> Void) -> Void) {
         self.handler = handler
         self._shown = shown
     }
@@ -27,6 +31,10 @@ struct LoginView: View {
     var body: some View {
         NavigationView {
             VStack {
+                TextField("Server", text: $rawServerHostPort)
+                    .alert(isPresented: $showServerAlert) {
+                        Alert(title: Text("Please enter a valid server host/port!"))
+                    }
                 TextField("Username", text: $rawUsername)
                     .alert(isPresented: $showUsernameAlert) {
                         Alert(title: Text("Please enter a username!"))
@@ -36,6 +44,10 @@ struct LoginView: View {
                         Alert(title: Text("Please enter a password!"))
                     }
                 Button(action: {
+                    guard let parsedHostPort = hostPortPattern.firstGroups(in: self.rawServerHostPort) else {
+                        self.showServerAlert = true
+                        return
+                    }
                     guard !self.rawUsername.isEmpty else {
                         self.showUsernameAlert = true
                         return
@@ -44,7 +56,12 @@ struct LoginView: View {
                         self.showPasswordAlert = true
                         return
                     }
-                    self.handler(Login(username: self.rawUsername, password: self.rawPassword)) {
+                    self.handler(ServerLogin(
+                        serverHost: parsedHostPort[1],
+                        serverPort: Int(parsedHostPort[2]) ?? 443,
+                        username: self.rawUsername,
+                        password: self.rawPassword
+                    )) {
                         if case let .failure(error) = $0 {
                             print("\(error)")
                             if let e = error as? LoginError {
@@ -76,7 +93,7 @@ struct LoginView: View {
 }
 
 struct LoginView_Previews: PreviewProvider {
-    @State private static var login: Login? = nil
+    @State private static var login: ServerLogin? = nil
     @State private static var shown: Bool = true
     
     static var previews: some View {

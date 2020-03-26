@@ -6,7 +6,9 @@
 //  Copyright © 2020 Fredrik. All rights reserved.
 //
 
-public struct Authentication {
+public struct ServerAuthentication {
+    public let serverHost: String
+    public let serverPort: Int
     public let token: String
     public let tokenType: String
 }

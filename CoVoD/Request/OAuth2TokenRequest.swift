@@ -13,14 +13,14 @@ public struct OAuth2TokenRequest {
     private let clientName: String
     private let clientSecret: String
     private let scope: String
-    private let login: Login
+    private let login: ServerLogin
     
     public init(
         clientId: String = "PPDPDvXf7bkd5bDLVhttUIxn",
         clientName: String = "app",
         clientSecret: String = "qvU7ckxCxYZBNfIItVRtPp5mML9UxnTu4M31migU9FYXTj13",
         scope: String = "view comment",
-        login: Login
+        login: ServerLogin
     ) {
         self.clientId = clientId
         self.clientName = clientName

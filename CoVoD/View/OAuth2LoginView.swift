@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct OAuth2LoginView: View {
-    @Binding var login: Login?
-    @Binding var authentication: Authentication?
+    @Binding var login: ServerLogin?
+    @Binding var authentication: ServerAuthentication?
     @Binding var shown: Bool
     
-    init(login: Binding<Login?>, authentication: Binding<Authentication?>, shown: Binding<Bool>) {
+    init(login: Binding<ServerLogin?>, authentication: Binding<ServerAuthentication?>, shown: Binding<Bool>) {
         self._login = login
         self._authentication = authentication
         self._shown = shown
@@ -26,7 +26,7 @@ struct OAuth2LoginView: View {
                 case .success(let token):
                     self.login = login
                     DispatchQueue.main.async {
-                        self.authentication = Authentication(token: token.accessToken, tokenType: token.tokenType)
+                        self.authentication = ServerAuthentication(serverHost: login.serverHost, serverPort: login.serverPort, token: token.accessToken, tokenType: token.tokenType)
                     }
                     then(.success(()))
                 case .failure(let error):

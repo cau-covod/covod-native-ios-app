@@ -15,7 +15,7 @@ fileprivate let log = Logger(label: "ContentViewModel")
 class ContentViewModel: ObservableObject {
     @Published var courses: [Course] = []
     @Published var showCoursesErrorAlert: Bool = false
-    @Published var authentication: Authentication? = nil {
+    @Published var authentication: ServerAuthentication? = nil {
         willSet {
             if let auth = newValue {
                 APIRequest<[Feed]>(authentication: auth, endpoint: "/user/feed").perform { result in
