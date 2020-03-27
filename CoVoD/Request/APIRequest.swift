@@ -23,7 +23,7 @@ public struct APIRequest<T> where T: Decodable {
     
     public func perform(then: @escaping (Result<T, Error>) -> Void) {
         do {
-            let request = try HTTPRequest(scheme: "https", host: authentication.serverHost, port: authentication.serverPort, path: "/api/v1\(endpoint)", method: method, query: query, headers: ["Authorization": "\(authentication.tokenType) \(authentication.token)"])
+            let request = try HTTPRequest(scheme: authentication.serverScheme, host: authentication.serverHost, port: authentication.serverPort, path: "/api/v1\(endpoint)", method: method, query: query, headers: ["Authorization": "\(authentication.tokenType) \(authentication.token)"])
             
             if T.self == Empty.self {
                 request.runAsync { then($0.map({ (_: Data) in Empty() } as! (Data) -> T)) }
