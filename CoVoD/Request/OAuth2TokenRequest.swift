@@ -31,7 +31,7 @@ public struct OAuth2TokenRequest {
     
     public func perform(then: @escaping (Result<OAuth2Token, Error>) -> Void) {
         do {
-            let request = try HTTPRequest(scheme: "https", host: "covod.bre4k3r.de", path: "/oauth2/token", method: "POST", query: [
+            let request = try HTTPRequest(scheme: login.serverScheme, host: login.serverHost, port: login.serverPort, path: "/oauth2/token", method: "POST", query: [
                 "grant_type": "password",
                 "client_id": clientId,
                 "client_name": clientName,
