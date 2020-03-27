@@ -6,9 +6,13 @@
 //  Copyright © 2020 Fredrik. All rights reserved.
 //
 
+import AVFoundation
 import AVKit
 import UIKit
 import SwiftUI
+import Logging
+
+fileprivate let log = Logger(label: "PlayerView")
 
 struct PlayerView: UIViewControllerRepresentable {
     private let url: URL
@@ -22,14 +26,15 @@ struct PlayerView: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIViewController, context: UIViewControllerRepresentableContext<PlayerView>) {}
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<PlayerView>) -> UIViewController {
+        log.info("Playing \(url)")
         let asset = AVURLAsset(url: url, options: [
             "AVURLAssetHTTPHeaderFieldsKey": headers
         ])
         let item = AVPlayerItem(asset: asset)
         let player = AVPlayer(playerItem: item)
-        player.play()
         let vc = AVPlayerViewController()
         vc.player = player
+        player.play()
         return vc
     }
 }
